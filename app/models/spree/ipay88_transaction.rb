@@ -7,7 +7,7 @@ module Spree
     end
 
     def self.create_from_postback(params)
-       Ipay88Transaction.create(:merchant_code => params[:MerchantCode],
+       Ipay88Transaction.find_or_create_by(:merchant_code => params[:MerchantCode],
                                :payment_id => params[:PaymentId],
                                :ref_no => params[:RefNo],
                                :amount => params[:Amount],

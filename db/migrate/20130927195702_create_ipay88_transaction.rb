@@ -1,6 +1,6 @@
 class CreateIpay88Transaction < ActiveRecord::Migration
   def change
-    create_table :ipay88_transactions do |t|
+    create_table :spree_ipay88_transactions do |t|
       t.string :trans_id
       t.string :authcode
       t.string :status
