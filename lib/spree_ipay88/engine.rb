@@ -17,6 +17,10 @@ module SpreeIpay88
       end
     end
 
+      config.after_initialize do |app|
+        app.config.spree.payment_methods += [ Spree::BillingIntegration::Ipay88 ]
+      end
+
     config.to_prepare &method(:activate).to_proc
   end
 end

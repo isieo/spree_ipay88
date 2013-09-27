@@ -1,0 +1,20 @@
+<form action="https://www.mobile88.com/epayment/entry.asp" method ="post">
+	<div>
+	  <% @ipay_params.each do |p| %>
+	    <%= hidden_field_tag p[0],p[1] %>
+	  <% end %>
+  </div>
+	<div class="buttons">
+	  <button  name="submit" value="1" type="submit" id="btn_pay">
+	    Click on this button if you are not redirected in 10 seconds
+	  </button>
+	</div>
+</form>
+
+<script>
+$(function(){
+  $('#btn_pay').click(function(){
+    $('#btn_pay').hide();
+  }).trigger("click");
+});
+</script>

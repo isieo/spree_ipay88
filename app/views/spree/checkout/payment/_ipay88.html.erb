@@ -1,0 +1,25 @@
+<p data-hook="ipay88_quick_checkout"></p>
+
+<%
+opts = {}
+opts[:transaction_id] = "#{@order.number}"
+opts[:amount] = @order.total
+opts[:return_url] = ipay88_return_order_checkout_url(@order, :token => @order.token,
+                                                             :payment_method_id => payment_method.id)
+opts[:cancel_url] = ipay88_cancel_order_checkout_url(@order, :token => @order.token)
+opts[:status_url] = ipay88_url
+opts[:payment_method_id] = payment_method.id
+%>
+
+<style>
+  iframe.ipay88_frame{
+    border: 0px;
+    width: 500px;
+    height: 500px;
+  }
+</style>
+
+<fieldset id="ipay88_payment__<%= payment_method.id %>" data-hook>
+  <legend><%= Spree.t(:payment_information) %></legend>
+  <input name="payment_source[<%= payment_method.id %>][ipay88]" value="<%= payment_method.id %>">
+</fieldset>
