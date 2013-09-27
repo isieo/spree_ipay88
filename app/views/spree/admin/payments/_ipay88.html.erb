@@ -1,0 +1,39 @@
+<fieldset>
+  <legend>iPay88</legend>
+
+    <table class="index">
+    <tr>
+      <th colspan="6">Ipay88 Transaction</th>
+    </tr>
+    <tr>
+      <td><label>Transaction Id:</label></td>
+      <td>
+        <%= payment.source.trans_id %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>signature:</label></td>
+      <td>
+        <%= payment.source.signature %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Status:</label></td>
+      <td>
+        <%= payment.source.status %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>Error Description:</label></td>
+      <td>
+        <%= payment.source.error_description %>
+      </td>
+    </tr>
+    <tr>
+      <td><label>ref_no:</label></td>
+      <td>
+        <%= payment.source.ref_no %>
+      </td>
+    </tr>
+  </table>
+</fieldset>

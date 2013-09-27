@@ -30,18 +30,6 @@ module Spree
       false
     end
 
-    def form_params(order, opts = {})
-      sig = self.signature({order_number: order.number,amount_in_cents: order.total.to_s.gsub('.',''), currency: 'MYR'})
-      [["MerchantCode",preferred_merchant_code],
-      ["RefNo",order.number],
-      ["amount",order.total.to_s.gsub('.','')],
-      ["currency","MYR"],
-      ["ProdDesc",'Payment for '+ order.number],
-      ["Signature",sig],
-      ["ResponseURL",opts[:response_url] ]]
-
-    end
-
     private
 
     def url_encode(param_string)

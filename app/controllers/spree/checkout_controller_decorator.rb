@@ -24,7 +24,7 @@ module Spree
 
       unless @order.payments.where(:source_type => 'Spree::Ipay88Transaction').present?
         payment_method = PaymentMethod.find(params[:payment_method_id])
-        ipay88_transaction = Ipay88Transaction.new
+        ipay88_transaction = Ipay88Transaction.create_from_postback(params)
 
         payment = @order.payments.create({:amount => @order.total,
                                          :source => ipay88_transaction,
