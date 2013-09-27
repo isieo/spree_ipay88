@@ -3,6 +3,7 @@
 	  <% @ipay_params.each do |p| %>
 	    <%= hidden_field_tag p[0],p[1] %>
 	  <% end %>
+	    <%= hidden_field_tag 'payment_method_id',@payment_method.id %>
   </div>
 	<div class="buttons">
 	  <button  name="submit" value="1" type="submit" id="btn_pay">

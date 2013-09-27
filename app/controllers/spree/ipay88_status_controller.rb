@@ -6,10 +6,10 @@ module Spree
       payment_id = params[:PaymentId]
       reference_no = params[:RefNo]
       amount = params[:Amount]
-      @order = Order.find_by_numbe rreference_no
+      @order = Order.find_by_number reference_no
 
       unless @order.payments.where(:source_type => 'Spree::Ipay88Transaction').present?
-        payment_method = @order.payments.where(:source_type => 'Spree::Ipay88Transaction').first.payment_method
+        payment_method = PaymentMethod.find(params[:payment_method_id])
         ipay88_transaction = Ipay88Transaction.create_from_postback(params)
 
         payment = @order.payments.create({:amount => @order.total,
