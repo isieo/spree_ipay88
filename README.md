@@ -1,22 +1,22 @@
-SpreeIpay88/
-============
+SpreeIpay88
+===========
 
 Introduction goes here.
 
 Installation
 ------------
 
-Add spree_ipay88/ to your Gemfile:
+Add spree_ipay88 to your Gemfile:
 
 ```ruby
-gem 'spree_ipay88/'
+gem 'spree_ipay88'
 ```
 
 Bundle your dependencies and run the installation generator:
 
 ```shell
 bundle
-bundle exec rails g spree_ipay88/:install
+bundle exec rails g spree_ipay88:install
 ```
 
 Testing
@@ -34,7 +34,7 @@ When testing your applications integration with this extension you may use it's 
 Simply add this require statement to your spec_helper:
 
 ```ruby
-require 'spree_ipay88//factories'
+require 'spree_ipay88/factories'
 ```
 
 Copyright (c) 2013 [name of extension creator], released under the New BSD License
