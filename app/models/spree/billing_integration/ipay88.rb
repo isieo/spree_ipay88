@@ -1,13 +1,13 @@
 module Spree
   class BillingIntegration::Ipay88 < BillingIntegration
-    preference :account, :string
     preference :merchant_code, :string
     preference :merchant_key, :string
+    preference :currency, :string, :default => 'MYR'
 
 
     def remote_validation(options)
       url = "http://www.mobile88.com/epayment/enquiry.asp"
-      url += "?MerchantCode=#{url_encode(preferred_merchant_code)}"
+      url += "?MerchantCode=#{url_encode(self.preferred_merchant_code)}"
       url += "&RefNo=#{url_encode(options[:reference_no])}"
       url += "&Amount=#{url_encode(options[:amount])}"
       response = Net::HTTP.get_response(URI.parse(url))
@@ -18,11 +18,11 @@ module Spree
     end
 
     def signature(options)
-      components  = [preferred_merchant_key]
-      components << [preferred_merchant_code]
+      components  = [self.preferred_merchant_key]
+      components << [self.preferred_merchant_code]
       components << [options[:order_number]]
       components << [options[:amount_in_cents]]
-      components << [options[:currency]]
+      components << [self.preferred_currency]
       [Digest::SHA1.digest(components.join)].pack("m").chomp
     end
 
@@ -32,7 +32,7 @@ module Spree
 
 
     def form_params(order, opts = {})
-      sig = self.signature({order_number: order.number,amount_in_cents: order.total.to_s.gsub('.',''), currency: 'MYR'})
+      sig = self.signature({order_number: order.number,amount_in_cents: order.total.to_s.gsub('.',''), currency: self.preferred_currency})
       [["MerchantCode",preferred_merchant_code],
       ["RefNo",order.number],
       ["amount",order.total.to_s.gsub('.','')],
