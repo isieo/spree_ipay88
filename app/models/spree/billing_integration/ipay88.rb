@@ -35,9 +35,11 @@ module Spree
       sig = self.signature({order_number: order.number,amount_in_cents: order.total.to_s.gsub('.',''), currency: self.preferred_currency})
       [["MerchantCode",preferred_merchant_code],
       ["RefNo",order.number],
-      ["amount",order.total.to_s.gsub('.','')],
+      ["amount",order.total.to_money.to_s],
       ["currency","MYR"],
       ["ProdDesc",'Payment for '+ order.number],
+      ["UserName",order.bill_address.firstname],
+      ["UserEmail",order.email],
       ["Signature",sig],
       ["BackendURL",opts[:backend_url] ],
       ["ResponseURL",opts[:response_url] ]]

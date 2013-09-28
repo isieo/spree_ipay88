@@ -6,6 +6,7 @@ module Spree
       payment_id = params[:PaymentId]
       reference_no = params[:RefNo]
       amount = params[:Amount]
+
       @order = Order.find_by_number reference_no
 
       unless @order.payments.where(:source_type => 'Spree::Ipay88Transaction').present?
@@ -20,7 +21,8 @@ module Spree
           payment.started_processing!
           payment.pend!
         else
-
+          redirect_to '/'
+          return
         end
         if @order.state != "complete"
           @order.update_attributes({:state => "complete", :completed_at => Time.now})

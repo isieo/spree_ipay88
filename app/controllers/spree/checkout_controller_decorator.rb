@@ -13,7 +13,7 @@ module Spree
 
     def ipay88_proxy
       @payment_method = PaymentMethod.find(object_params[:payments_attributes].first[:payment_method_id])
-      @ipay_params = @payment_method.form_params(@order, {response_url: ipay88_return_order_checkout_path(@order),backend_url: ipay88_path })
+      @ipay_params = @payment_method.form_params(@order, {response_url: ipay88_return_order_checkout_url(@order, payment_method_id: @payment_method.id),backend_url: ipay88_url(payment_method_id: @payment_method.id) })
     end
 
     def ipay88_return
@@ -22,6 +22,12 @@ module Spree
       payment_id = params[:PaymentId]
       reference_no = params[:RefNo]
       amount = params[:Amount]
+      if params[:ErrDesc] && !params[:ErrDesc].empty?
+        flash[:error] = params[:ErrDesc]
+        redirect_to edit_order_path(@order)
+        return
+      end
+
 
       unless @order.payments.where(:source_type => 'Spree::Ipay88Transaction').present?
         payment_method = PaymentMethod.find(params[:payment_method_id])

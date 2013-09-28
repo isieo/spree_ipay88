@@ -5,7 +5,7 @@ Spree::Core::Engine.routes.draw do
       member do
         get :ipay88_proxy
         get :ipay88_cancel
-        get :ipay88_return
+        post :ipay88_return
       end
     end
   end

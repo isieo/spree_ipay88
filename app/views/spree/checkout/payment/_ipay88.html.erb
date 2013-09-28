@@ -20,6 +20,5 @@ opts[:payment_method_id] = payment_method.id
 </style>
 
 <fieldset id="ipay88_payment__<%= payment_method.id %>" data-hook>
-  <legend><%= Spree.t(:payment_information) %></legend>
-  <input name="payment_source[<%= payment_method.id %>][ipay88]" value="<%= payment_method.id %>">
+  <input name="payment_source[<%= payment_method.id %>][ipay88]" type="hidden" value="<%= payment_method.id %>">
 </fieldset>
