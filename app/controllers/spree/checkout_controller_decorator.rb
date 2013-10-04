@@ -39,7 +39,7 @@ module Spree
                                            :source => ipay88_transaction,
                                            :payment_method => payment_method})
           payment.started_processing!
-          payment.pend!
+          payment.complete!
         else
 
         end
@@ -56,6 +56,10 @@ module Spree
         end
 
         @order.finalize!
+      else
+        flash.notice = Spree.t(:order_processed_successfully)
+        redirect_to order_path(@order)
+        return
       end
 
       flash.notice = Spree.t(:order_processed_successfully)

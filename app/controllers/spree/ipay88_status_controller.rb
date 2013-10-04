@@ -19,7 +19,7 @@ module Spree
                                            :source => ipay88_transaction,
                                            :payment_method => payment_method})
           payment.started_processing!
-          payment.pend!
+          payment.complete!
         else
           redirect_to '/'
           return
