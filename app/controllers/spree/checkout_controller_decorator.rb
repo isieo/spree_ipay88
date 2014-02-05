@@ -56,14 +56,10 @@ module Spree
         end
 
         @order.finalize!
-      else
-        flash.notice = Spree.t(:order_processed_successfully)
-        redirect_to order_path(@order)
-        return
       end
 
       flash.notice = Spree.t(:order_processed_successfully)
-      redirect_to completion_route
+      redirect_to order_path(@order)
 
     end
 
