@@ -24,7 +24,7 @@ module Spree
       amount = params[:Amount]
       if params[:ErrDesc] && !params[:ErrDesc].empty?
         flash[:error] = params[:ErrDesc]
-        redirect_to edit_checkout_order_path(@order)
+        redirect_to edit_order_checkout_path(@order)
         return
       end
 

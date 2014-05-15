@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_ipay88'
-  s.version     = '2.1.3.3'
+  s.version     = '2.1.3.4'
   s.summary     = 'Ipay88 For Spree'
   s.description = 'Ipay88 For Spree'
   s.required_ruby_version = '>= 1.9.3'
