@@ -12,7 +12,7 @@ module Spree
     end
 
     def ipay88_proxy
-      @payment_method = PaymentMethod.find(object_params[:payments_attributes].first[:payment_method_id])
+      @payment_method = PaymentMethod.find(nested_params[:payments_attributes].first[:payment_method_id])
       @ipay_params = @payment_method.form_params(@order, {response_url: ipay88_return_order_checkout_url(@order, payment_method_id: @payment_method.id),backend_url: ipay88_url(payment_method_id: @payment_method.id) })
     end
 
