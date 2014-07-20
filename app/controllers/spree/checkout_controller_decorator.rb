@@ -4,9 +4,9 @@ module Spree
     skip_before_filter :verify_authenticity_token, only: [:ipay88_proxy, :ipay88_return, :ipay88_cancel]
 
     def redirect_if_ipay
-      if  object_params[:payments_attributes] &&
-          object_params[:payments_attributes].first[:payment_method_id] &&
-          PaymentMethod.find(object_params[:payments_attributes].first[:payment_method_id]).type == 'Spree::BillingIntegration::Ipay88'
+      if  nested_params[:payments_attributes] &&
+          nested_params[:payments_attributes].first[:payment_method_id] &&
+          PaymentMethod.find(nested_params[:payments_attributes].first[:payment_method_id]).type == 'Spree::BillingIntegration::Ipay88'
         redirect_to ipay88_proxy_order_checkout_path(@order, params)
       end
     end
